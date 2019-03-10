@@ -1,24 +1,33 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import React from 'react';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Text>Home Screen</Text>
-        </View>
-    );
-  }
-}
+import SearchScreen from "./screens/SearchScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+import DetailsScreen from "./screens/DetailsScreen";
+import SearchResults from "./screens/SearchResultsScreen";
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
+const StackNavigator = createStackNavigator({
+  Search: {
+    screen: SearchScreen
+  },
+  Details: {
+    screen: DetailsScreen
+  },
+  SearchResults: {
+    screen: SearchResults
   }
 });
 
-const AppContainer = createAppContainer(AppNavigator);
+const StackContainer = createAppContainer(StackNavigator)
+
+const TabNavigator = createBottomTabNavigator({
+  Home: StackContainer,
+  Settings: SettingsScreen,
+});
+
+
+
+const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends React.Component {
   render() {
