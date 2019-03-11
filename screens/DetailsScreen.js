@@ -1,6 +1,9 @@
 import React from 'react';
 import {Text, View} from "react-native";
 
+import {MOVIE_API_KEY} from "../ENV";
+
+
 export default class DetailsScreen extends React.Component {
 
     constructor(props) {
@@ -14,7 +17,7 @@ export default class DetailsScreen extends React.Component {
     async componentDidMount() {
         try {
             let response = await fetch(
-                'http://www.omdbapi.com/?apikey=c71febfe&i=' + this.props.navigation.getParam("imdbID"),
+                'http://www.omdbapi.com/?apikey=' +  MOVIE_API_KEY + '&i=' + this.props.navigation.getParam("imdbID"),
             );
             let responseJson = await response.json();
             this.setState({
