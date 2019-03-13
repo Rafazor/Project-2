@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from "react-native";
+import {Image, Text, View, StyleSheet} from "react-native";
 
 import {MOVIE_API_KEY} from "../ENV";
 
@@ -17,7 +17,7 @@ export default class DetailsScreen extends React.Component {
     async componentDidMount() {
         try {
             let response = await fetch(
-                'http://www.omdbapi.com/?apikey=' +  MOVIE_API_KEY + '&i=' + this.props.navigation.getParam("imdbID"),
+                'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY + '&i=' + this.props.navigation.getParam("imdbID"),
             );
             let responseJson = await response.json();
             this.setState({
@@ -31,14 +31,49 @@ export default class DetailsScreen extends React.Component {
     render() {
         const movie = this.state.movieDetails;
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{movie.Title}</Text>
-                <Text>{movie.Type}</Text>
-                <Text>{movie.Year}</Text>
-                <Text>{movie.Genre}</Text>
-                <Text>{movie.Actors}</Text>
-                <Text>{movie.Plot}</Text>
+            <View style={{}}>
+                <View style={styles.detailsImageContainer}>
+                    <Image
+                        style={styles.detailsImage}
+                        source={{uri: movie.Poster}}
+                    />
+                </View>
+                <View style={[styles.detailsTextContainer]}>
+                    <Text style={[styles.detailsTitle]}>{movie.Title} ({movie.Year}) - {movie.Type}</Text>
+                    <Text><Text style={styles.bold}>Released:</Text> {movie.Released}</Text>
+                    <Text><Text style={styles.bold}>Genre:</Text> {movie.Genre}</Text>
+                    <Text><Text style={styles.bold}>Actors:</Text> {movie.Actors}</Text>
+                    <Text><Text style={styles.bold}>Language:</Text> {movie.Language}</Text>
+                    <Text style={styles.detailsPlot}>{movie.Plot}</Text>
+                </View>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    detailsImage: {
+        width: 400,
+        height: 400,
+        marginTop: 10
+    },
+    detailsImageContainer: {
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    detailsTextContainer: {
+        marginLeft: 20,
+        marginRight: 20
+    },
+    detailsTitle: {
+        fontSize: 20,
+        marginBottom: 20,
+        marginTop: 20,
+        fontWeight: 'bold'
+    },
+    bold: {fontWeight: 'bold'},
+    detailsPlot: {
+        marginTop: 10,
+        marginBottom: 10
+    }
+});
