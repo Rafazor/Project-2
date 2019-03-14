@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 
 import SearchScreen from "./screens/SearchScreen";
-import SettingsScreen from "./screens/SettingsScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import SearchResults from "./screens/SearchResultsScreen";
 
@@ -20,14 +19,8 @@ const StackNavigator = createStackNavigator({
 
 const StackContainer = createAppContainer(StackNavigator)
 
-const TabNavigator = createBottomTabNavigator({
-  Home: StackContainer,
-  Settings: SettingsScreen,
-});
 
-
-
-const AppContainer = createAppContainer(TabNavigator);
+const AppContainer = createAppContainer(StackContainer);
 
 export default class App extends React.Component {
   render() {
