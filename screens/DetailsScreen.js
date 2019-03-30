@@ -53,8 +53,8 @@ export default class DetailsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     detailsImage: {
-        width: 400,
-        height: 400,
+        width: 300,
+        height: 300,
         marginTop: 10
     },
     detailsImageContainer: {

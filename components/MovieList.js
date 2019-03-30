@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Text, Image, View} from "react-native";
 
-const MovieList = ({movieList, navigation}) => {
+const MovieList = ({movieList, navigation, getMoreResults}) => {
     return (
         <ScrollView style={{alignSelf: "stretch", paddingLeft: 15}}>
             {movieList.map((prop, key) => {
@@ -22,6 +22,7 @@ const MovieList = ({movieList, navigation}) => {
                     </View>
                 );
             })}
+            <Text style={{marginBottom: 40}} onPress={() => getMoreResults()}>Get more results...</Text>
         </ScrollView>
     )
 };
