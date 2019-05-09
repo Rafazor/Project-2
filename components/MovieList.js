@@ -22,7 +22,7 @@ const MovieList = ({movieList, navigation, getMoreResults}) => {
                     </View>
                 );
             })}
-            <Text style={{marginBottom: 40}} onPress={() => getMoreResults()}>Get more results...</Text>
+            <Text style={{marginBottom: 40}} onPress={() => getMoreResults()}>More than 10 results, show another 10...</Text>
         </ScrollView>
     )
 };

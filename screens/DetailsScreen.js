@@ -21,7 +21,8 @@ export default class DetailsScreen extends React.Component {
             );
             let responseJson = await response.json();
             this.setState({
-                movieDetails: responseJson
+                movieDetails: responseJson,
+                isLoading: false
             });
         } catch (error) {
             console.error(error);
@@ -30,24 +31,32 @@ export default class DetailsScreen extends React.Component {
 
     render() {
         const movie = this.state.movieDetails;
-        return (
-            <View style={{}}>
-                <View style={styles.detailsImageContainer}>
-                    <Image
-                        style={styles.detailsImage}
-                        source={{uri: movie.Poster}}
-                    />
+        if (this.state.isLoading) {
+            return (
+                <View>
+                    <Text>Loading...</Text>
                 </View>
-                <View style={[styles.detailsTextContainer]}>
-                    <Text style={[styles.detailsTitle]}>{movie.Title} ({movie.Year}) - {movie.Type}</Text>
-                    <Text><Text style={styles.bold}>Released:</Text> {movie.Released}</Text>
-                    <Text><Text style={styles.bold}>Genre:</Text> {movie.Genre}</Text>
-                    <Text><Text style={styles.bold}>Actors:</Text> {movie.Actors}</Text>
-                    <Text><Text style={styles.bold}>Language:</Text> {movie.Language}</Text>
-                    <Text style={styles.detailsPlot}>{movie.Plot}</Text>
+            )
+        } else {
+            return (
+                <View>
+                    <View style={styles.detailsImageContainer}>
+                        <Image
+                            style={styles.detailsImage}
+                            source={{uri: movie.Poster}}
+                        />
+                    </View>
+                    <View style={[styles.detailsTextContainer]}>
+                        <Text style={[styles.detailsTitle]}>{movie.Title} ({movie.Year}) - {movie.Type}</Text>
+                        <Text><Text style={styles.bold}>Released:</Text> {movie.Released}</Text>
+                        <Text><Text style={styles.bold}>Genre:</Text> {movie.Genre}</Text>
+                        <Text><Text style={styles.bold}>Actors:</Text> {movie.Actors}</Text>
+                        <Text><Text style={styles.bold}>Language:</Text> {movie.Language}</Text>
+                        <Text style={styles.detailsPlot}>{movie.Plot}</Text>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
     }
 }
 

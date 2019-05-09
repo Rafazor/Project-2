@@ -23,13 +23,11 @@ export default class SearchResultsScreen extends React.Component {
 
 
     getMoreResults = async () => {
-        console.log(this.state.page)
         try {
             let response = await fetch(
                 'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY +'&s=' + this.props.navigation.getParam("searchText") + '&page=' + this.state.page + 1,
             );
             let responseJson = await response.json();
-            console.log(responseJson)
             this.setState((prevState) => ({
                 movieList: [...prevState.movieList, ...responseJson.Search],
                 page: prevState.page + 1
@@ -41,6 +39,7 @@ export default class SearchResultsScreen extends React.Component {
     };
 
     render() {
+
         return (
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <MovieList

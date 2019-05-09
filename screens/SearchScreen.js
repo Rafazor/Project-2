@@ -48,21 +48,19 @@ export default class SearchScreen extends React.Component {
                     />
                     <Text style={styles.searchButton} onPress={() => this.getMovieList()}>SEARCH</Text>
                 </View>
-                <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 20}}>Filter by: movie, series,
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>Filter by: movie, series,
                     episode</Text>
-                <View style={styles.pickerContainer}>
-                    <Picker
-                        selectedValue={this.state.filterType}
-                        style={styles.pickerType}
-                        onValueChange={(itemValue, itemIndex) =>
-                            this.setState({filterType: itemValue})
-                        }>
-                        <Picker.Item label="All results" value=""/>
-                        <Picker.Item label="Movie" value="movie"/>
-                        <Picker.Item label="Series" value="series"/>
-                        <Picker.Item label="Episode" value="episode"/>
-                    </Picker>
-                </View>
+                <Picker
+                    selectedValue={this.state.filterType}
+                    style={styles.pickerType}
+                    onValueChange={(itemValue, itemIndex) =>
+                        this.setState({filterType: itemValue})
+                    }>
+                    <Picker.Item label="All results" value=""/>
+                    <Picker.Item label="Movie" value="movie"/>
+                    <Picker.Item label="Series" value="series"/>
+                    <Picker.Item label="Episode" value="episode"/>
+                </Picker>
             </View>
         );
     }
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         paddingLeft: 10,
         borderWidth: 1,
-        width: 300,
+        width: 250,
     },
     textInputContainer: {
         flexDirection: "row",
@@ -98,10 +96,6 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontSize: 13,
         borderLeftWidth: 0
-    },
-    pickerContainer: {
-        borderColor: 'gray',
-        borderWidth: 1,
     },
     pickerType: {
         height: 40,
