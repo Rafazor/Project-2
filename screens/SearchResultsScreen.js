@@ -6,7 +6,7 @@ import {MOVIE_API_KEY} from "../ENV";
 import MovieList from "../components/MovieList";
 
 export default class SearchResultsScreen extends React.Component {
-    static navigationOptions = ({ navigation }) => {
+    static navigationOptions = ({navigation}) => {
         return {
             title: `${navigation.getParam('searchText')}  (${navigation.getParam('movieList').totalResults} results)`,
         };
@@ -20,21 +20,19 @@ export default class SearchResultsScreen extends React.Component {
         }
     }
 
-
-
     getMoreResults = async () => {
-        console.log(this.state.page)
         try {
             let response = await fetch(
-                'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY +'&s=' + this.props.navigation.getParam("searchText") + '&page=' + this.state.page + 1,
+                'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY + '&s=' + this.props.navigation.getParam("searchText") + '&page=' + this.state.page + 1,
             );
             let responseJson = await response.json();
-            console.log(responseJson)
-            this.setState((prevState) => ({
-                movieList: [...prevState.movieList, ...responseJson.Search],
-                page: prevState.page + 1
-            }))
 
+            if (responseJson.Response !== 'False') {
+                this.setState((prevState) => ({
+                    movieList: [...prevState.movieList, ...responseJson.Search],
+                    page: prevState.page + 1
+                }))
+            }
         } catch (error) {
             console.error(error);
         }

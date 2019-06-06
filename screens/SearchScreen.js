@@ -2,7 +2,6 @@ import React from 'react';
 import {Text, TextInput, View, Picker, StyleSheet} from "react-native";
 import {MOVIE_API_KEY} from "../ENV";
 
-
 export default class SearchScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
@@ -50,7 +49,7 @@ export default class SearchScreen extends React.Component {
                 </View>
                 <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 20}}>Filter by: movie, series,
                     episode</Text>
-                <View style={styles.pickerContainer}>
+                <View>
                     <Picker
                         selectedValue={this.state.filterType}
                         style={styles.pickerType}

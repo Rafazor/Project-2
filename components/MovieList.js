@@ -1,9 +1,18 @@
 import React from 'react';
-import {ScrollView, Text, Image, View} from "react-native";
+import {ScrollView, Text, Image, View, Dimensions} from "react-native";
 
 const MovieList = ({movieList, navigation, getMoreResults}) => {
     return (
-        <ScrollView style={{alignSelf: "stretch", paddingLeft: 15}}>
+        <ScrollView
+            style={{alignSelf: "stretch", paddingLeft: 15}}
+            onScroll={(e) => {
+                let windowHeight = Dimensions.get('window').height,
+                    height = e.nativeEvent.contentSize.height,
+                    offset = e.nativeEvent.contentOffset.y;
+                if (windowHeight + offset >= height) {
+                    getMoreResults();
+                }
+            }}>
             {movieList.map((prop, key) => {
                 return (
                     <View key={key} style={{}}>
@@ -22,7 +31,6 @@ const MovieList = ({movieList, navigation, getMoreResults}) => {
                     </View>
                 );
             })}
-            <Text style={{marginBottom: 40}} onPress={() => getMoreResults()}>Get more results...</Text>
         </ScrollView>
     )
 };
