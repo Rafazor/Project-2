@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, Image, View, Dimensions} from "react-native";
+import {ScrollView, Text, Image, View} from "react-native";
 
 const MovieList = ({movieList, navigation, getMoreResults}) => {
     return (

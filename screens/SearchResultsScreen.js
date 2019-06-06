@@ -20,6 +20,8 @@ export default class SearchResultsScreen extends React.Component {
         }
     }
 
+
+
     getMoreResults = async () => {
         try {
             let response = await fetch(

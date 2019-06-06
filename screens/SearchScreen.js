@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TextInput, View, Picker, StyleSheet} from "react-native";
 import {MOVIE_API_KEY} from "../ENV";
 
+
 export default class SearchScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
@@ -47,7 +48,7 @@ export default class SearchScreen extends React.Component {
                     />
                     <Text style={styles.searchButton} onPress={() => this.getMovieList()}>SEARCH</Text>
                 </View>
-                <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 20}}>Filter by: movie, series,
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>Filter by: movie, series,
                     episode</Text>
                 <View>
                     <Picker
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         paddingLeft: 10,
         borderWidth: 1,
-        width: 300,
+        width: 250,
     },
     textInputContainer: {
         flexDirection: "row",
@@ -97,10 +98,6 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontSize: 13,
         borderLeftWidth: 0
-    },
-    pickerContainer: {
-        borderColor: 'gray',
-        borderWidth: 1,
     },
     pickerType: {
         height: 40,
