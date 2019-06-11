@@ -25,7 +25,7 @@ export default class SearchResultsScreen extends React.Component {
     getMoreResults = async () => {
         try {
             let response = await fetch(
-                'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY + '&s=' + this.props.navigation.getParam("searchText") + '&page=' + this.state.page + 1,
+                'http://www.omdbapi.com/?apikey=' + MOVIE_API_KEY + '&s=' + this.props.navigation.getParam("searchText") + '&page=' + this.state.page + 1 + '&type=' + this.props.navigation.getParam("type"),
             );
             let responseJson = await response.json();
 

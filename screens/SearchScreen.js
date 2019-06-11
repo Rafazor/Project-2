@@ -29,7 +29,8 @@ export default class SearchScreen extends React.Component {
             } else {
                 this.props.navigation.navigate('SearchResults', {
                     movieList: responseJson,
-                    searchText: this.state.userSearch
+                    searchText: this.state.userSearch,
+                    type: this.state.filterType
                 })
             }
         } catch (error) {
